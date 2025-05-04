@@ -1,0 +1,170 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Form Styles */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h1 {
+    color: #6c63ff;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: #777;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c63ff;
+}
+
+.input-icon input {
+    padding-left: 40px !important;
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.input-icon input:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.input-icon label {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-icon input:focus + label,
+.input-icon input:not(:placeholder-shown) + label {
+    top: 0;
+    left: 35px;
+    font-size: 12px;
+    background: white;
+    padding: 0 5px;
+    color: #6c63ff;
+}
+
+.form-footer {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+/* Button Styles */
+.btn {
+    background: linear-gradient(135deg, #6c63ff 0%, #4a42d6 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #5d5d5d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Data Display Styles */
+.data-container {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.data-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.data-container p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.data-container p strong {
+    color: #6c63ff;
+}
+
+/* Link Styles */
+.link-btn {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #6c63ff;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.link-btn:hover {
+    color: #4a42d6;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .form-group input {
+        padding: 12px;
+    }
+}

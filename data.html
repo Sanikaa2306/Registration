@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Form Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1 style="color: #6c63ff; text-align: center; margin-bottom: 30px;">Saved User Data</h1>
+        <div id="formDataDisplay"></div>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px;">
+            <a href="index_main.html" class="btn">Add New Data</a>
+            <button id="button_3" class="btn btn-secondary">Clear All Data</button>
+        </div>
+    </div>
+
+    <script>
+    // Retrieve the array of objects from localStorage
+    let dataArray = JSON.parse(localStorage.getItem("formData")) || [];
+
+    // Reference the div where the data will be displayed
+    let formDataDisplay = document.getElementById("formDataDisplay");
+
+    if (dataArray.length === 0) {
+        formDataDisplay.innerHTML = `
+            <div class="data-container" style="text-align: center;">
+                <p>No data saved yet</p>
+            </div>
+        `;
+    } else {
+        // Iterate over the array of objects and create HTML elements to display the data
+        dataArray.forEach(function(data, index) {
+            let container = document.createElement("div");
+            container.classList.add("data-container");
+
+            container.innerHTML = `
+                <p><strong>Name:</strong> ${data.name}</p>
+                <p><strong>Email:</strong> ${data.email}</p>
+                <p><strong>Phone:</strong> ${data.phone}</p>
+                <button class="delete-btn" data-index="${index}">Delete</button>
+            `;
+
+            formDataDisplay.appendChild(container);
+        });
+
+        // Handle individual delete buttons
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                if (confirm(`Delete ${dataArray[index].name}'s data?`)) {
+                    dataArray.splice(index, 1);
+                    localStorage.setItem("formData", JSON.stringify(dataArray));
+                    
+                    // Show deletion message
+                    showMessage('Data deleted!', '#ff4444');
+                    setTimeout(() => location.reload(), 1000);
+                }
+            });
+        });
+    }
+
+    document.getElementById("button_3").addEventListener("click", function() {
+        if (confirm("Are you sure you want to delete all saved data?")) {
+            localStorage.clear();
+            
+            // Show deletion message
+            showMessage('All data cleared!', '#ff4444');
+            setTimeout(() => location.reload(), 1000);
+        }
+    });
+
+    // Helper function for showing messages
+    function showMessage(text, color) {
+        let msg = document.createElement('div');
+        msg.textContent = text;
+        msg.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${color};
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+            z-index: 1000;
+        `;
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 3000);
+    }
+
+    // Add animation styles
+    let style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    </script>
+</body>
+</html>
